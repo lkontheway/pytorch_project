@@ -24,7 +24,7 @@ def parse_common_args(parser):
     parser.add_argument('--model_type', type=str, default='base_model', help='used in model_entry.py')
     parser.add_argument('--data_type', type=str, default='base_dataset', help='used in data_entry.py')
     parser.add_argument('--save_prefix', type=str, default='pref', help='some comment for model or test result dir')
-    parser.add_argument('--load_model_path', type=str, default='checkpoints/base_model_pref/0.pth',
+    parser.add_argument('--load_model_path', type=str, default='checkpoint/base_model_pref/0.pth',
                         help='model path for pretrain or test')
     parser.add_argument('--load_not_strict', action='store_true', help='allow to load only common state dicts')
     parser.add_argument('--val_list', type=str, default='/data/dataset1/list/base/val.txt',
@@ -66,7 +66,7 @@ def parse_test_args(parser):
 
     :param
         save_viz：控制是否保存可视化结果的开关
-        result_dir：可视化结果和测试结果的存储目录，留空，不用传入，会在get_test_result_dir中自动生成，自动创建目录，这个目录通常位于模型路径下，形如checkpoints/model_name/checkpoint_num/val_info_save_prefix
+        result_dir：可视化结果和测试结果的存储目录，留空，不用传入，会在get_test_result_dir中自动生成，自动创建目录，这个目录通常位于模型路径下，形如checkpoint/model_name/checkpoint_num/val_info_save_prefix
 
     :return:
     """
@@ -91,7 +91,7 @@ def get_test_args():
 
 
 def get_train_model_dir(args):
-    model_dir = os.path.join('checkpoints', args.model_type + '_' + args.save_prefix)
+    model_dir = os.path.join('checkpoint', args.model_type + '_' + args.save_prefix)
     if not os.path.exists(model_dir):
         os.system('mkdir -p ' + model_dir)
     args.model_dir = model_dir
